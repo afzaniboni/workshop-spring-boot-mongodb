@@ -1,8 +1,12 @@
 package com.educandoweb.workshopmongo.dto;
 
+import java.io.Serializable;
+
 import com.educandoweb.workshopmongo.domain.User;
 
-public class AuthorDto {
+public class AuthorDto implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private String id;
 	private String name;

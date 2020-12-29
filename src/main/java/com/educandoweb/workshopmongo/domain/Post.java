@@ -1,12 +1,15 @@
 package com.educandoweb.workshopmongo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.educandoweb.workshopmongo.dto.AuthorDto;
+import com.educandoweb.workshopmongo.dto.CommentDto;
 
 @Document(collection = "post")
 public class Post implements Serializable {
@@ -15,18 +18,20 @@ public class Post implements Serializable {
 
 	@Id
 	private String id;
-	private Date dated;
+	private Date date;
 	private String title;
 	private String body;
 	private AuthorDto author;
 
+	private List<CommentDto> comments = new ArrayList<>();
+
 	public Post() {
 	}
 
-	public Post(String id, Date dated, String title, String body, AuthorDto author) {
+	public Post(String id, Date date, String title, String body, AuthorDto author) {
 		super();
 		this.id = id;
-		this.dated = dated;
+		this.date = date;
 		this.title = title;
 		this.body = body;
 		this.author = author;
@@ -40,12 +45,12 @@ public class Post implements Serializable {
 		this.id = id;
 	}
 
-	public Date getDated() {
-		return dated;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setDated(Date dated) {
-		this.dated = dated;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public String getTitle() {
@@ -70,6 +75,14 @@ public class Post implements Serializable {
 
 	public void setAuthor(AuthorDto author) {
 		this.author = author;
+	}
+
+	public List<CommentDto> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentDto> comments) {
+		this.comments = comments;
 	}
 
 	@Override
